@@ -1,15 +1,13 @@
 package com.github.apermar1301
 
-fun formatName(firstName: String, lastName: String? = "Pérez", nickName: String? = "arbarito"): String {
+fun formatName(firstName: String, lastName: String?, nickName: String?): String {
 
-    return when {
-        nickName != null -> "Nickname: <$nickName>"
-        lastName != null -> "<$firstName> <$lastName>"
-        else -> "<$firstName>"
-    }
+    return nickName?.let { "Nickname: <$it>" }
+        ?: lastName?.let { "<$firstName> <$it>" }
+        ?: firstName
 
 }
 
-fun main(){
-    print(formatName("alvaro"))
+fun main() {
+    print(formatName("alvaro", null, null))
 }
